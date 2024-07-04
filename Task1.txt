@@ -1,0 +1,59 @@
+use myDB;
+create table Customers( CustomerID INT IDENTITY(1,1) primary key,
+	firstName NVARCHAR(50),
+	LastName NVARCHAR(50),
+	Email NVARCHAR(50),
+	PHONE NVARCHAR(50),
+	Address NVARCHAR(100),
+	CITY NVARCHAR(50),
+	PostalCode NVARCHAR(10),
+	Country NVARCHAR(50)
+	);
+	INSERT INTO  Customers (firstName,LastName,Email,PHONE,Address,CITY,PostalCode,Country)
+	values
+('bilal', 'ali', 'janesmith@example.com', '234-567-8901', '456 Oak St', 'Springfield', '12345', 'USA');
+
+
+CREATE TABLE Orders (
+    OrderID INT IDENTITY(1,1) PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE,
+    Status NVARCHAR(20),
+    Total DECIMAL(10, 2),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+INSERT INTO Orders (CustomerID, OrderDate, Status, Total)
+VALUES
+(3, '2024-07-03', 'Delivered', 29.99);
+
+CREATE TABLE Products (
+    ProductID INT IDENTITY(1,1) PRIMARY KEY,
+    ProductName NVARCHAR(100),
+    Category NVARCHAR(50),
+    Price DECIMAL(10, 2),
+    Stock INT
+);
+
+INSERT INTO Products (ProductName, Category, Price, Stock)
+VALUES
+('Laptop', 'Electronics', 799.99, 50),
+('Smartphone', 'Electronics', 599.99, 100),
+('Headphones', 'Accessories', 29.99, 200);
+
+
+CREATE TABLE Employees (
+    EmployeeID INT IDENTITY(1,1) PRIMARY KEY,
+    FirstName NVARCHAR(50),
+    LastName NVARCHAR(50),
+    Email NVARCHAR(100),
+    Phone NVARCHAR(20),
+    Position NVARCHAR(50),
+    HireDate DATE
+);
+
+INSERT INTO Employees (FirstName, LastName, Email, Phone, Position, HireDate)
+VALUES
+('muotasem', 'shbol', 'alicejohnson@example.com', '456-789-0123', 'Manager', '2022-01-15'),
+('majed', 'ali', 'bobwilliams@example.com', '567-890-1234', 'Sales Associate', '2023-02-20'),
+('slaih', 'alzoubi', 'caroldavis@example.com', '678-901-2345', 'Support Specialist', '2021-03-25');
